@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>STATIC PACKAGE</title>
+    <style>
+        body {
+            padding-bottom: 30px;
+        }
+
+        h4 {
+            margin: 40px 0 10px;
+        }
+
+        svg {
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #efefef;
+            text-align: center;
+            color: #000000;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center font-weight-normal">STATIC PACKAGE</h1>
+        <div id="alert_placeholder"></div>
+        <h4><small>MY STATIC PACKAGE LINKS</small></h4>
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#css" role="tab">CSS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#js" role="tab">Javascript</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#about" role="tab">About</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" role="tablist">
+            <div class="tab-pane active" id="css" role="tabpanel"></div>
+            <div class="tab-pane" id="js" role="tabpanel"></div>
+            <div class="tab-pane" id="about" role="tabpanel">
+                <h3 class="text-center font-weight-normal">ABOUT STATIC PACKAGE</h3>
+                <div class="jumbotron">
+                    <b>STATIC PACKAGE</b> allows you to run all your commonly used files from a single server instead of
+                    having multiple and lots of different files in different folders serving the same purpose
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer fixed-bottom">
+        <div class="container">
+            <span class="text-muted">STATIC PACKAGE</span>
+        </div>
+    </footer>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/tab.js"></script>
+    <script>
+        function myFunction(value) {
+            const el = document.createElement('textarea');
+            el.value = value;
+            el.setAttribute('readonly', '');
+            el.style.position = 'absolute';
+            el.style.left = '-9999px';
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            function showalert() {
+                $('#alert_placeholder').append(`<div class="alert alert-success alert-link" role="alert">Link Copied!!!!</div>`)
+                setTimeout(function () {
+                    $(".alert").remove();
+                }, 2000);
+            }
+            showalert()
+        }
+    </script>
+    <script>
+        fetch('http://localhost:8900/files')
+            .then(response => response.json())
+            .then(data => {
+                data[1].forEach(res => {
+                    let name = res.split(".")[0][0].toUpperCase() + res.split(".")[0].slice(1);
+                    document.querySelector('#css').innerHTML += `
+<div class="media text-muted pt-3">
+    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="text-dark">${name}</strong>
+                <svg onclick="myFunction('${data[0]}/css/${res}')" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-copy text-primary">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+        </div>
+        <span class="d-block">${res}</span>
+    </div>
+</div>
+                    `
+                });
+                data[2].forEach(res => {
+                    let name = res.split(".")[0][0].toUpperCase() + res.split(".")[0].slice(1);
+                    document.querySelector('#js').innerHTML += `
+<div class="media text-muted pt-3">
+    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="text-dark">${name}</strong>
+                <svg onclick="myFunction('${data[0]}/js/${res}')" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-copy text-primary">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+        </div>
+        <span class="d-block">${res}</span>
+    </div>
+</div>
+                    `
+                });
+            });
+    </script>
+</body>
+
+</html>
