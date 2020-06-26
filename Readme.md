@@ -35,4 +35,4 @@ You can easily update your packaged by moving your new file to the css folder or
 
 # Usage
 After downloading and starting the server, click on the copy symbol to copy the the link to any file.  
-![preview](preview.png) 
+![preview](preview.PNG) 
