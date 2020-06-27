@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <title>STATIC PACKAGE</title>
+    <title>LOCAL CDN</title>
     <style>
         body {
             padding-bottom: 30px;
+            background-color: #fdfdfd;
         }
 
         h4 {
@@ -25,14 +26,21 @@
             color: #000000;
             padding: 10px 0;
         }
+
+        #alert_placeholder{
+            position: fixed;
+            top: 5%;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1 class="text-center font-weight-normal">STATIC PACKAGE</h1>
+        <h1 class="text-center font-weight-normal pt-3">LOCAL CDN</h1>
+
         <div id="alert_placeholder"></div>
-        <h4><small>MY STATIC PACKAGE LINKS</small></h4>
+
+        <h4><small>MY LOCAL CDN LINKS</small></h4>
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#css" role="tab">CSS</a>
@@ -49,17 +57,16 @@
             <div class="tab-pane active" id="css" role="tabpanel"></div>
             <div class="tab-pane" id="js" role="tabpanel"></div>
             <div class="tab-pane" id="about" role="tabpanel">
-                <h3 class="text-center font-weight-normal">ABOUT STATIC PACKAGE</h3>
+                <h3 class="text-center font-weight-normal pt-4">ABOUT LOCAL CDN</h3>
                 <div class="jumbotron">
-                    <b>STATIC PACKAGE</b> allows you to run all your commonly used files from a single server instead of
-                    having multiple and lots of different files in different folders serving the same purpose
+                    <b>LOCAL CDN</b> is a local content delivery network like <strong>cdnjs</strong> which allows you to run all your commonly used <b>CSS and Javascript</b> files from a single server offline on your local machine instead of having multiple and lots of different files in different folders serving the same purpose
                 </div>
             </div>
         </div>
     </div>
     <footer class="footer fixed-bottom">
         <div class="container">
-            <span class="text-muted">STATIC PACKAGE</span>
+            <span class="text-muted">&copy; LOCAL CDN 2020</span>
         </div>
     </footer>
     <script src="js/jquery.min.js"></script>
